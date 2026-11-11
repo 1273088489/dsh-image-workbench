@@ -230,7 +230,7 @@ chmod 600 backend/credentials.env
 | ModelScope 魔搭 | 免费额度 | [modelscope.cn](https://modelscope.cn) → 账号设置 → 访问令牌 |
 | Pollinations | 免费额度 | [enter.pollinations.ai](https://enter.pollinations.ai) |
 | Cloudflare Workers AI | 免费额度（每日限额） | [dash.cloudflare.com](https://dash.cloudflare.com) → Workers AI → API Token + Account ID |
-| SenseNova 商汤 | **按 token 计费，会真花钱** | [platform.sensenova.cn](https://platform.sensenova.cn) |
+| SenseNova 商汤 | **按 token 计费，会真花钱（账号额度很多，相当于免费）** | [platform.sensenova.cn](https://platform.sensenova.cn) |
 
 「免费额度」指的是**用你自己的免费账号不会产生费用**，不是「不用 key」。Cloudflare 还需要额外的 `CLOUDFLARE_ACCOUNT_ID`。
 

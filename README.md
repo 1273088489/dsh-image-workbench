@@ -5,7 +5,28 @@
 侧边栏一个入口，主页面完成「选渠道 → 选模型 → 写提示词 → 批量排队 → 看结果 → 管画廊」的完整链路。
 后端直接驱动本机 Python 生图脚本，**不需要任何云服务，不经过第三方服务器**。
 
-![三栏工作台](docs/screenshot-light.png)
+![三栏工作台 · 暖阳工作室](docs/screenshot-light.png)
+
+<details>
+<summary>更多截图：暗色 / 其它配色 / 缩放</summary>
+
+**暖阳工作室 · 暗色**
+
+![暖阳暗色](docs/screenshot-dark.png)
+
+**商业杂志 · 亮色**
+
+![商业杂志](docs/screenshot-editorial.png)
+
+**石板蓝 · 暗色**
+
+![石板蓝暗色](docs/screenshot-slate-dark.png)
+
+**窄屏 70% 缩放（三栏不坍缩）**
+
+![缩放](docs/screenshot-zoom.png)
+
+</details>
 
 ---
 

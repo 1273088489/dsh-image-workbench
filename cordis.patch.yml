@@ -1,0 +1,6 @@
+# Bundle patch for the image workbench. One row: the package name doubles as
+# the client entry id, so the same insert activates the Host half (routes and
+# the Python bridge) and, through `dsh.client`, the browser half.
+- insert:
+    - id: 'dsh-image-workbench:workbench'
+      name: 'dsh-image-workbench'

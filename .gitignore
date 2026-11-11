@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Credentials — never commit these
+credentials.env
+*.env
+!*.env.example
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+*.so
+
+# Generated artifacts
+generated-images/
+image-gen-workspace/
+*.meta.json
+*.workbench.json
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs and local scratch
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+tmp/
+.cache/

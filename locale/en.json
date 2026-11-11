@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Image workbench",
+    "description": "Generates images through the local image script and keeps every artifact in a fixed workspace, with a channel/model/size cascade and gallery."
+  }
+}

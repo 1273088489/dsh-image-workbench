@@ -1,0 +1,69 @@
+{
+  "name": "dsh-image-workbench",
+  "version": "1.0.0",
+  "description": "Image generation workbench for DeepSeek Harness: a sidebar entry and main page that drive a local multi-provider image script through the Host.",
+  "type": "module",
+  "license": "MIT",
+  "icon": "icon.svg",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "image-generation",
+    "text-to-image",
+    "modelscope",
+    "pollinations",
+    "cloudflare-workers-ai"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./src/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "src/client.js",
+    "lib/capabilities.js",
+    "lib/prompt-assist.js",
+    "lib/prompt-llm.js",
+    "scripts/image_gen_bridge.py",
+    "scripts/check-client-contract.mjs",
+    "scripts/check-client-apply.mjs",
+    "backend/free_image_gen.py",
+    "backend/references/*.md",
+    "backend/SKILL.md",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    },
+    "engines": {
+      "dsh": ">=0.1.0"
+    }
+  },
+  "scripts": {
+    "check": "node scripts/check-client-contract.mjs src/client.js",
+    "check:apply": "node scripts/check-client-apply.mjs src/client.js",
+    "probe": "python3 scripts/image_gen_bridge.py probe ./backend"
+  },
+  "engines": {
+    "node": ">=20",
+    "python": ">=3.10"
+  }
+}

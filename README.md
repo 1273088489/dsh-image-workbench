@@ -100,32 +100,97 @@ Pollinations 对中文提示词会静默返回不相干画面，界面会提前�
 
 ## 安装
 
+三种方式任选其一。**装完后都要重启 DSH Web**，侧边栏才会出现入口。
+
+### 方式 A：一句话让 AI 帮你装（最省事）
+
+把下面这段直接发给 DSH / Claude Code / Cursor 等任意能操作终端的 AI：
+
+```
+帮我在 DeepSeek Harness 的 web profile 里安装插件 dsh-image-workbench，
+仓库地址 https://github.com/1273088489/dsh-image-workbench 。
+
+步骤：
+1. cd ~/.dsh/profiles/web
+2. git clone https://github.com/1273088489/dsh-image-workbench.git
+3. 在该目录执行 pnpm install 装好它自己的依赖
+4. 编辑 ~/.dsh/profiles/web/package.json：
+   - dependencies 里加 "dsh-image-workbench": "link:./dsh-image-workbench"
+   - dsh.profile.bundles 数组里追加 "dsh-image-workbench"
+5. 回到 ~/.dsh/profiles/web 执行 pnpm install
+6. 告诉我需要重启 dsh web 才能生效
+```
+
+> ⚠️ **第 4 步两处都要改。** 只加 `dependencies` 不往 `dsh.profile.bundles` 里加，包会被装上但**插件不会激活** —— 侧边栏什么都没有，也没有报错。这是最容易漏的一步。
+
+### 方式 B：git clone（推荐，便于更新）
+
+```bash
+# 1. 克隆进 profile 目录
+cd ~/.dsh/profiles/web
+git clone https://github.com/1273088489/dsh-image-workbench.git
+cd dsh-image-workbench && pnpm install && cd ..
+
+# 2. 编辑 ~/.dsh/profiles/web/package.json，加两处：
+
+#    "dependencies": {
+#      "dsh-image-workbench": "link:./dsh-image-workbench"
+#    }
+#
+#    "dsh": { "profile": { "bundles": [
+#      ...
+#      "dsh-image-workbench"
+#    ] } }
+
+# 3. 应用
+pnpm install
+```
+
+更新时：
+
+```bash
+cd ~/.dsh/profiles/web/dsh-image-workbench && git pull
+```
+
+### 方式 C：从 Release 下载（不想用 git）
+
+```bash
+cd ~/.dsh/profiles/web
+curl -L -o pkg.tgz \
+  https://github.com/1273088489/dsh-image-workbench/releases/download/v1.0.0/dsh-image-workbench-1.0.0.tgz
+
+mkdir dsh-image-workbench && tar -xzf pkg.tgz -C dsh-image-workbench --strip-components=1
+rm pkg.tgz
+```
+
+然后按**方式 B 的第 2、3 步**修改 `package.json` 并 `pnpm install`。
+
+> Release 里的 tgz 是 npm 打包产物，含 `index.js` / `src/` / `lib/` / `scripts/` / `backend/` / `README` / `LICENSE`，**不含** `docs/` 截图（体积考虑）。
+
+### 验证装好了
+
+```bash
+cd ~/.dsh/profiles/web
+pnpm exec dsh --profile web --dump-config | grep dsh-image-workbench
+```
+
+应当看到：
+
+```
+# == dsh-image-workbench
+- id: dsh-image-workbench:workbench
+  name: dsh-image-workbench
+```
+
+看到这两行说明 bundle 已被正确展开。没有输出就是没装好，回到上面检查第 2 步有没有漏改 `bundles`。
+
+然后重启 DSH Web，侧边栏出现「图像生成工作台」。
+
 ### 前置要求
 
 - **DSH** ≥ 0.1.0（Web UI）
 - **Node.js** ≥ 20
 - **Python** ≥ 3.10（只用标准库，无第三方依赖）
-
-### 步骤
-
-```bash
-# 1. 克隆到 DSH 的 profile 目录
-cd ~/.dsh/profiles/web
-git clone <this-repo> dsh-image-workbench
-
-# 2. 声明为本地依赖
-#    在 profile 的 package.json 的 dependencies 里加：
-#    "dsh-image-workbench": "link:./dsh-image-workbench"
-
-# 3. 安装
-pnpm install
-
-# 4. 重启 DSH Web
-```
-
-重启后侧边栏出现「图像生成工作台」入口。
-
-> 如果你用插件管理器（Plugin Manager）安装，也可以直接从本地路径添加本仓库。
 
 ### 配置 API Key
 

@@ -34,12 +34,12 @@
 
 ### 四渠道统一入口，自动降级
 
-| 渠道 | 计费 | 能力 |
-|---|---|---|
-| **ModelScope 魔搭** | 免费 | 中文友好、异步任务、支持 LoRA |
-| **SenseNova 商汤日日新** | 按 token | 唯一支持**参考图编辑**（最多 5 张）、可到 4096px |
-| **Pollinations** | 免费 | MAI Image 2.6 系列 |
-| **Cloudflare Workers AI** | 免费 | 最后兜底，按模型族切换参数 |
+| 渠道 | 计费 | API Key | 能力 |
+|---|---|---|---|
+| **ModelScope 魔搭** | 免费额度 | **必填** | 中文友好、异步任务、支持 LoRA |
+| **SenseNova 商汤日日新** | 按 token 计费 | **必填** | 唯一支持**参考图编辑**（最多 5 张）、可到 4096px |
+| **Pollinations** | 免费额度 | **必填** | MAI Image 2.6 系列 |
+| **Cloudflare Workers AI** | 免费额度 | **必填** | 最后兜底，按模型族切换参数 |
 
 任一渠道失败自动沿降级链切换到下一个。你也可以锁定单个渠道不降级。
 
@@ -219,9 +219,22 @@ chmod 600 backend/credentials.env
 
 只填你想用的渠道即可，缺凭据的渠道在界面上会显示「缺少凭据」。
 
-### 全部都是免费渠道
+### 关于 API Key（重要）
 
-ModelScope、Pollinations、Cloudflare 有免费额度，**不花钱就能出图**。只有 SenseNova 按 token 计费，不填它的 key 就不会被调用。
+**四个渠道全部都需要你自己的 API Key，没有一个是免注册可用的。**
+
+仓库里**不含任何密钥**，也没有内置公共 key —— 每个使用者用自己的账号和额度。
+
+| 渠道 | 是否花钱 | 怎么拿 key |
+|---|---|---|
+| ModelScope 魔搭 | 免费额度 | [modelscope.cn](https://modelscope.cn) → 账号设置 → 访问令牌 |
+| Pollinations | 免费额度 | [enter.pollinations.ai](https://enter.pollinations.ai) |
+| Cloudflare Workers AI | 免费额度（每日限额） | [dash.cloudflare.com](https://dash.cloudflare.com) → Workers AI → API Token + Account ID |
+| SenseNova 商汤 | **按 token 计费，会真花钱** | [platform.sensenova.cn](https://platform.sensenova.cn) |
+
+「免费额度」指的是**用你自己的免费账号不会产生费用**，不是「不用 key」。Cloudflare 还需要额外的 `CLOUDFLARE_ACCOUNT_ID`。
+
+**只填你想用的渠道即可**，缺 key 的渠道在界面上会显示「缺少凭据」，不会被调用。SenseNova 完全留空就永远不会产生费用。
 
 ---
 

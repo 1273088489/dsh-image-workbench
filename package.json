@@ -37,7 +37,9 @@
     "locale/*.json",
     "icon.svg",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "backend/credentials.env.example",
+    "CHANGELOG.md"
   ],
   "dsh": {
     "bundle": {

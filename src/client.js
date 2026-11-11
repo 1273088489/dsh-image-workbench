@@ -59,7 +59,7 @@ window.__ModuleLoader__.load({
       'form.generate': '生成',
       'form.cancel': '取消',
 
-      'badge.free': '免费',
+      'badge.free': '免费额度',
       'badge.paid': '按 token 计费',
       'badge.imageInput': '支持参考图',
       'badge.unavailable': '缺少凭据',
@@ -234,7 +234,7 @@ window.__ModuleLoader__.load({
       'form.generate': 'Generate',
       'form.cancel': 'Cancel',
 
-      'badge.free': 'Free',
+      'badge.free': 'Free tier',
       'badge.paid': 'Billed in tokens',
       'badge.imageInput': 'Reference images',
       'badge.unavailable': 'Credential missing',
